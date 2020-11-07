@@ -4,6 +4,7 @@ const Controller = require('egg').Controller
 const { createBundleRenderer } = require('vue-server-renderer')
 const path = require('path')
 const fs = require('fs')
+const cheerio = require('cheerio')
 
 class HomeController extends Controller {
 	async index() {
@@ -34,10 +35,23 @@ class HomeController extends Controller {
 			template,
 			clientManifest,
 		})
+		const wsScript = `
+		<script>
+		console.log('WebSocket')
+		const ws = new WebSocket('ws://localhost:3333/')
+		ws.onmessage = function(){
+			console.log('refresh')
+			window.location.reload()
+		}
+		</script>
+		`
 
 		try {
-			const html = await renderer.renderToString(ctx)
-			fs.writeFileSync(path.join(__dirname, '../static', 'index.html'), html)
+			let html = await renderer.renderToString(ctx)
+			let $ = cheerio.load(html)
+			$('body').append(wsScript)
+			html = $.html()
+			// fs.writeFileSync(path.join(__dirname, '../static', 'index.html'), html)
 			ctx.status = 200
 			ctx.type = 'html'
 			ctx.body = html

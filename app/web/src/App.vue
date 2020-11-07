@@ -1,14 +1,18 @@
 <template lang="pug">
 	#app
-		h2 APP PAGE
-		router-view 
-		button(@click="show") show
+		vHeader
+		vAbout
 </template>
 
 <script>
+import vHeader from 'app/web/src/components/v-header'
+import vAbout from 'app/web/src/components/v-about'
 export default {
 	name: 'App',
-	components: {},
+	components: {
+		vHeader,
+		vAbout,
+	},
 	props: {},
 	data() {
 		return {}
@@ -22,4 +26,8 @@ export default {
 }
 </script>
 
-<style lang="scss"></style>
+<style lang="scss">
+#app {
+	padding-top: 6rem;
+}
+</style>

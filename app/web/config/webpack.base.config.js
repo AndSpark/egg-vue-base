@@ -1,6 +1,5 @@
 const path = require('path')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
-
 // 提取CSS文件
 // const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
@@ -54,6 +53,7 @@ module.exports = {
 						options: {
 							resources: [
 								path.resolve(__dirname, '../src/asset/style/mixin.scss'),
+								path.resolve(__dirname, '../src/asset/style/normalize.css'),
 							],
 						},
 					},
@@ -66,6 +66,7 @@ module.exports = {
 					loader: 'url-loader',
 					options: {
 						limit: 10000, // 10Kb
+						esModule: false,
 					},
 				},
 			},
