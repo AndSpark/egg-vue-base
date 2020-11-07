@@ -12,6 +12,9 @@ const watching = complier.watch(
 	},
 	(err, stats) => {
 		console.log('watching change')
+		if (err) {
+			console.log(err)
+		}
 	}
 )
 /**

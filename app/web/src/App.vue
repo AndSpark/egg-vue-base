@@ -1,7 +1,8 @@
-<template>
-	<div id="app">
-		<router-view></router-view>
-	</div>
+<template lang="pug">
+	#app
+		h2 APP PAGE
+		router-view 
+		button(@click="show") show
 </template>
 
 <script>
@@ -13,8 +14,12 @@ export default {
 		return {}
 	},
 	computed: {},
-	methods: {},
+	methods: {
+		show() {
+			alert('show')
+		},
+	},
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss"></style>

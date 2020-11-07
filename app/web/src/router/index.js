@@ -8,7 +8,7 @@ function createRouter() {
 	const routes = [
 		{
 			path: '/',
-			component: Home,
+			component: Home, // 进入的默认首页不能用异步路由，否则会找不到
 		},
 		{
 			path: '/About',

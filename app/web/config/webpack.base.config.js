@@ -1,8 +1,11 @@
 const path = require('path')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
+
+// 提取CSS文件
+// const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+
 module.exports = {
 	mode: 'development',
-
 	resolve: {
 		extensions: ['.js', '.vue'],
 		alias: {
@@ -20,7 +23,11 @@ module.exports = {
 		rules: [
 			{
 				test: /\.vue$/,
-				use: 'vue-loader',
+				loader: 'vue-loader',
+			},
+			{
+				test: /\.pug$/,
+				loader: 'pug-plain-loader',
 			},
 			{
 				test: /\.js$/,
@@ -28,11 +35,30 @@ module.exports = {
 			},
 			{
 				test: /\.css$/,
-				use: ['vue-style-loader', 'css-loader'],
+				use: [
+					'vue-style-loader',
+					// MiniCssExtractPlugin.loader,
+					'css-loader',
+					'postcss-loader',
+				],
 			},
 			{
 				test: /\.scss$/,
-				use: ['vue-style-loader', 'css-loader', 'sass-loader'],
+				use: [
+					'vue-style-loader',
+					// MiniCssExtractPlugin.loader,
+					'css-loader',
+					'sass-loader',
+					{
+						loader: 'sass-resources-loader',
+						options: {
+							resources: [
+								path.resolve(__dirname, '../src/asset/style/mixin.scss'),
+							],
+						},
+					},
+					'postcss-loader',
+				],
 			},
 			{
 				test: /\.(jpg|jpeg|png|gif|svg)$/,
@@ -46,5 +72,8 @@ module.exports = {
 		],
 	},
 
-	plugins: [new VueLoaderPlugin()],
+	plugins: [
+		new VueLoaderPlugin(),
+		// new MiniCssExtractPlugin({ filename: 'common.css' }),
+	],
 }

@@ -37,6 +37,7 @@ class HomeController extends Controller {
 
 		try {
 			const html = await renderer.renderToString(ctx)
+			fs.writeFileSync(path.join(__dirname, '../static', 'index.html'), html)
 			ctx.status = 200
 			ctx.type = 'html'
 			ctx.body = html

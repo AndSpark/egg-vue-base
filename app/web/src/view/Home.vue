@@ -1,11 +1,8 @@
-<template>
-	<div id="home">
-		<h2>Home Page</h2>
-		<router-link to="/about">
-			<button>去about</button>
-		</router-link>
-		<button @click="onHandleClick">aaaaa</button>
-	</div>
+<template lang="pug">
+	#home
+		h2 Home Page
+		button(@click="onHandleClick") 按钮
+		router-link(to="/about") go about 
 </template>
 
 <script>
@@ -25,8 +22,8 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 h2 {
-	color: red;
+	color: $green;
 }
 </style>
