@@ -45,5 +45,6 @@ const watching = complier.watch(
  */
 module.exports = app => {
 	const { router, controller } = app
+	router.get(/(\.js|\.css|\.png|\.jpg)$/, controller.static.index)
 	router.get('*', controller.home.index)
 }

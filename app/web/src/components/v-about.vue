@@ -38,9 +38,9 @@
 </template>
 
 <script>
-import icon1 from 'app/web/src/asset/img/icon1'
-import icon2 from 'app/web/src/asset/img/icon2'
-import icon3 from 'app/web/src/asset/img/icon3'
+import icon1 from 'app/web/src/asset/img/icon1.png'
+import icon2 from 'app/web/src/asset/img/icon2.png'
+import icon3 from 'app/web/src/asset/img/icon3.png'
 export default {
 	name: 'v-about',
 	components: {},
